@@ -1,0 +1,1 @@
+function toggleMenu(){document.getElementById("mainNav").classList.toggle("open")}function openStripe(url){if(!url||url.includes("REPLACE_")){alert("Add your live Stripe Payment Link first.");return}window.location.href=url}
