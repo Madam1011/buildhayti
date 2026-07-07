@@ -1,0 +1,3 @@
+import { requireAdmin, json, ok } from '../../_lib/auth.js';
+export async function onRequestGet({env}){ const {results}=await env.DB.prepare('SELECT * FROM products WHERE visible=1 ORDER BY featured DESC, id DESC').all(); return ok(results); }
+export async function onRequestPost(context){ const blocked=requireAdmin(context); if(blocked)return blocked; const b=await json(context.request); await context.env.DB.prepare('INSERT INTO products (slug,name,category,price,image,short_description,ingredients,directions,qr_education,stripe_url,featured,visible) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)').bind(b.slug,b.name,b.category,b.price,b.image,b.short_description,b.ingredients,b.directions,b.qr_education,b.stripe_url,b.featured?1:0,b.visible?1:0).run(); return ok({success:true}); }
