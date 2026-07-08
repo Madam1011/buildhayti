@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hayti’s Easy Product Editor</title>
+<style>
+:root{--bg:#070707;--panel:#111;--gold:#d7a12b;--gold2:#f4c04f;--cream:#fff3cf;--line:rgba(215,161,43,.45)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:white;font-family:Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.logo{width:160px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}.btn,button{background:linear-gradient(135deg,var(--gold2),var(--gold));border:0;color:#050505;font-weight:900;border-radius:8px;padding:11px 16px;cursor:pointer}.secondary{background:#171717;color:white;border:1px solid var(--line)}.danger{background:#5c1010;color:white}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form label{display:grid;gap:6px;color:var(--cream);font-size:13px}.form input,.form textarea,.form select{padding:12px;border-radius:8px;border:1px solid var(--line);background:#050505;color:white}.form textarea{min-height:85px}.full{grid-column:1/-1}.product-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0}.note{background:#fff3cf;color:#111;border-radius:10px;padding:13px;line-height:1.5}@media(max-width:800px){.form,.product-row{grid-template-columns:1fr}.btn,button{width:100%;min-height:50px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><img class="logo" src="/assets/haytis-logo.png"><div><button onclick="newProduct()">+ Add Product</button> <button class="secondary" onclick="downloadJSON()">Download products.json</button></div></div>
+  <div class="note"><strong>Easy version:</strong> Edit products here, download <strong>products.json</strong>, then upload that one file to GitHub at <strong>data/products.json</strong>. No D1 database. No Cloudflare Functions. No password setup.</div>
+  <div class="panel"><h2>Products</h2><div id="list"></div></div>
+  <div class="panel"><h2 id="formTitle">Add / Edit Product</h2><div class="form">
+    <label>Product Name<input id="name"></label><label>Slug<input id="slug" placeholder="elderberry-honey"></label>
+    <label>Category<input id="category"></label><label>Price<input id="price" placeholder="$18.00"></label>
+    <label class="full">Image URL<input id="image" placeholder="/assets/my-product.jpg"></label>
+    <label class="full">Short Description<textarea id="short_description"></textarea></label>
+    <label class="full">Ingredients<textarea id="ingredients"></textarea></label>
+    <label class="full">Directions<textarea id="directions"></textarea></label>
+    <label class="full">QR Education<textarea id="qr_education"></textarea></label>
+    <label class="full">Stripe Payment Link<input id="stripe_url"></label>
+    <label>Featured<select id="featured"><option value="false">No</option><option value="true">Yes</option></select></label>
+    <label>Visible<select id="visible"><option value="true">Yes</option><option value="false">No</option></select></label>
+    <div class="full"><button onclick="saveProduct()">Save Product</button> <button class="secondary" onclick="clearForm()">Clear</button></div>
+  </div></div>
+</div>
+<script>
+let products=[], editingIndex=null;
+async function load(){try{const r=await fetch('/data/products.json?ts='+Date.now());products=await r.json()}catch(e){products=[]}render()}
+function render(){const list=document.getElementById('list');list.innerHTML=products.map((p,i)=>`<div class="product-row"><div><strong>${p.name}</strong><br><small>${p.category||''} • ${p.price||''} • ${p.visible!==false?'Visible':'Hidden'}</small></div><button onclick="edit(${i})">Edit</button><button class="danger" onclick="del(${i})">Delete</button></div>`).join('')||'<p>No products yet.</p>'}
+function getForm(){return {name:v('name'),slug:v('slug')||slugify(v('name')),category:v('category'),price:v('price'),image:v('image')||'/assets/homepage-reference.png',short_description:v('short_description'),ingredients:v('ingredients'),directions:v('directions'),qr_education:v('qr_education'),stripe_url:v('stripe_url'),featured:v('featured')==='true',visible:v('visible')==='true'}}
+function v(id){return document.getElementById(id).value}
+function set(id,val){document.getElementById(id).value=val??''}
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function saveProduct(){const p=getForm(); if(!p.name){alert('Product name is required');return} if(editingIndex===null)products.push(p);else products[editingIndex]=p;clearForm();render()}
+function edit(i){editingIndex=i;const p=products[i];['name','slug','category','price','image','short_description','ingredients','directions','qr_education','stripe_url'].forEach(k=>set(k,p[k]));set('featured',String(!!p.featured));set('visible',String(p.visible!==false));document.getElementById('formTitle').textContent='Edit Product'}
+function del(i){if(confirm('Delete this product?')){products.splice(i,1);render();clearForm()}}
+function clearForm(){editingIndex=null;document.getElementById('formTitle').textContent='Add / Edit Product';['name','slug','category','price','image','short_description','ingredients','directions','qr_education','stripe_url'].forEach(k=>set(k,''));set('featured','false');set('visible','true')}
+function newProduct(){clearForm();window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
+function downloadJSON(){const blob=new Blob([JSON.stringify(products,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='products.json';a.click();URL.revokeObjectURL(a.href);alert('Now upload this file to GitHub at data/products.json and commit changes.')}
+load()
+</script>
+</body>
+</html>
