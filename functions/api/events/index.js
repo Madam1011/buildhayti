@@ -1,1 +1,0 @@
-import { ok } from '../../_lib/auth.js'; export async function onRequestGet(){ return ok([]); }
