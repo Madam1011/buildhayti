@@ -1,0 +1,23 @@
+PHASE 1 UPLOAD INSTRUCTIONS
+
+1. Unzip this folder.
+2. In GitHub, upload/replace:
+   assets
+   css
+   js
+   data
+   docs
+   index.html
+   shop.html
+   product.html
+   qr.html
+   about.html
+   contact.html
+3. Cloudflare settings stay:
+   Build command: blank
+   Build output directory: /
+4. Commit changes.
+5. Wait for Cloudflare to deploy.
+6. Test homepage and shop.
+
+This fixes the issue where the full mockup screenshot was displayed as the hero image.

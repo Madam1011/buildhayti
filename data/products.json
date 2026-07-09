@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "rehmannia-vitality-tea",
+    "name": "Rehmannia Vitality Tea",
+    "category": "Herbal Tea Blend",
+    "price": "$24.00",
+    "sku": "HAY-TEA-001",
+    "inventory": 25,
+    "image": "/assets/product-tea.png",
+    "short_description": "A small-batch herbal tea blend created to support a restorative daily wellness ritual.",
+    "ingredients": "Add ingredients here.",
+    "directions": "Follow your final product label directions.",
+    "qr_education": "Scan to learn ingredients, directions, benefits, recipes, and reorder options.",
+    "stripe_url": "https://buy.stripe.com/REPLACE_REHMANNIA_TEA_LINK",
+    "featured": true,
+    "visible": true
+  },
+  {
+    "slug": "elderberry-infused-honey",
+    "name": "Elderberry Infused Honey",
+    "category": "Raw Honey Infusion",
+    "price": "$18.00",
+    "sku": "HAY-HNY-001",
+    "inventory": 30,
+    "image": "/assets/category-honey.png",
+    "short_description": "A rich herbal honey infusion crafted for teas, tonics, and everyday nourishment.",
+    "ingredients": "Raw honey, elderberry, cinnamon, clove.",
+    "directions": "Stir into tea, drizzle over food, or use as directed on your final label.",
+    "qr_education": "Scan to learn ingredients, directions, benefits, recipes, and reorder options.",
+    "stripe_url": "https://buy.stripe.com/REPLACE_ELDERBERRY_HONEY_LINK",
+    "featured": false,
+    "visible": true
+  },
+  {
+    "slug": "body-care-skin-ritual",
+    "name": "Body Care & Skin Ritual",
+    "category": "Body Care",
+    "price": "$22.00",
+    "sku": "HAY-BC-001",
+    "inventory": 20,
+    "image": "/assets/category-bodycare.png",
+    "short_description": "Botanical self-care essentials created for nourishing daily rituals.",
+    "ingredients": "Add ingredients here.",
+    "directions": "Use as directed on final product label.",
+    "qr_education": "Scan to learn ingredients, directions, benefits, recipes, and reorder options.",
+    "stripe_url": "https://buy.stripe.com/REPLACE_BODYCARE_LINK",
+    "featured": false,
+    "visible": true
+  }
+]
