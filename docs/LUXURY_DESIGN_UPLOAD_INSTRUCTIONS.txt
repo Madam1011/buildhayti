@@ -1,0 +1,29 @@
+LUXURY DESIGN EDITION UPLOAD INSTRUCTIONS
+
+Upload/replace in GitHub:
+- assets
+- css
+- js
+- data
+- admin
+- docs
+- index.html
+- shop.html
+- product.html
+- qr.html
+- about.html
+- contact.html
+
+Cloudflare settings stay:
+Build command: blank
+Build output directory: /
+
+This edition specifically fixes the Wellness for Every Journey section by restoring the original mockup-style luxury cards:
+- Smaller, properly cropped card images
+- Gold borders
+- Compact card heights
+- Shop Now links
+- Desktop luxury grid
+- Tablet/mobile responsive layout
+
+After committing, wait for Cloudflare to deploy and hard-refresh the browser.
