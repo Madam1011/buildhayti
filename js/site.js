@@ -10,3 +10,23 @@ async function loadProducts(limit){const products=await getProducts();const box=
 async function loadShop(){let all=await getProducts();let box=document.getElementById('product-grid');let search=document.getElementById('search');let category=document.getElementById('categoryFilter');if(!box)return;let cats=[...new Set(all.map(p=>p.category).filter(Boolean))]; if(category) category.innerHTML='<option value="">All Categories</option>'+cats.map(c=>`<option>${c}</option>`).join(''); function render(){let q=(search?.value||'').toLowerCase();let c=category?.value||'';let list=all.filter(p=>(!c||p.category===c)&&(!q||(p.name+p.category+p.short_description).toLowerCase().includes(q)));box.innerHTML=list.map(productCard).join('')||'<p>No products found.</p>'} search?.addEventListener('input',render);category?.addEventListener('change',render);render();}
 async function loadProduct(){const slug=new URLSearchParams(location.search).get('slug');const products=await getProducts();const p=products.find(x=>x.slug===slug)||products[0];if(!p)return;document.title=p.name+' | Hayti’s';['name','category','short_description','price','ingredients','directions','qr_education','sku','inventory'].forEach(k=>{const el=document.getElementById(k);if(el)el.textContent=p[k]??''});document.getElementById('pimg').src=p.image||'/assets/product-tea.png';document.getElementById('buy').onclick=()=>openStripe(p.stripe_url)}
 function newsletterSubmit(e){e.preventDefault();alert('Newsletter integration ready.')} loadSettings();
+
+
+// Phase 3 scroll reveal polish
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(el => el.style.opacity = 1);
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.14});
+  items.forEach(el => io.observe(el));
+});

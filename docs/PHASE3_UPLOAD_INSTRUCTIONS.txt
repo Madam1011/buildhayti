@@ -1,0 +1,31 @@
+PHASE 3 UPLOAD INSTRUCTIONS
+
+Upload/replace these in GitHub:
+- assets
+- css
+- js
+- data
+- admin
+- docs
+- index.html
+- shop.html
+- product.html
+- qr.html
+- about.html
+- contact.html
+
+Cloudflare settings remain:
+Build command: blank
+Build output directory: /
+
+Phase 3 adds:
+- Premium homepage polish
+- Category cards fixed to one row on desktop
+- Better section spacing and transitions
+- Featured product spotlight
+- QR callout section
+- Testimonial section
+- Improved card hover effects
+- Better desktop/tablet/mobile responsive behavior
+
+After uploading and committing, wait 2–3 minutes and hard-refresh the website.

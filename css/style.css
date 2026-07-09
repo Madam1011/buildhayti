@@ -85,3 +85,200 @@ p{color:var(--cream);line-height:1.6}
   .mobile-bar a{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:6px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#050505;font-weight:900;text-transform:uppercase}
   .mobile-bar a.secondary{background:#140014;color:#fff;border:1px solid var(--gold)}body{padding-bottom:72px}
 }
+
+
+
+/* ===========================
+   HAYTI'S PHASE 3 PREMIUM POLISH
+   =========================== */
+
+:root{
+  --shadow-gold: 0 18px 48px rgba(215,161,43,.16);
+  --soft-panel: linear-gradient(180deg,rgba(215,161,43,.12),rgba(5,5,5,.88));
+}
+
+.header{
+  box-shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 74% 48%,rgba(244,192,79,.18),transparent 28%),
+    radial-gradient(circle at 20% 18%,rgba(244,192,79,.08),transparent 24%);
+  pointer-events:none;
+}
+
+.hero .container{
+  position:relative;
+  z-index:1;
+}
+
+.hero-art img{
+  transform:scale(1.05);
+  animation: haytiGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes haytiGlow{
+  from{filter:drop-shadow(0 18px 42px rgba(215,161,43,.10));}
+  to{filter:drop-shadow(0 24px 58px rgba(215,161,43,.25));}
+}
+
+.section-kicker{
+  max-width:760px;
+  margin:-12px auto 28px;
+  text-align:center;
+  color:var(--cream);
+  font-size:16px;
+}
+
+/* Premium category section: 4 on one row for desktop */
+.category-grid-premium{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  align-items:stretch;
+}
+
+.category-grid-premium .card{
+  min-height:330px;
+}
+
+.category-grid-premium .card img{
+  height:185px;
+}
+
+.category-grid-premium .card-body{
+  min-height:140px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.card{
+  box-shadow:0 14px 38px rgba(0,0,0,.28);
+}
+
+.card:hover{
+  border-color:var(--gold2);
+  box-shadow:var(--shadow-gold);
+}
+
+.card h3{
+  letter-spacing:.02em;
+}
+
+.luxury-divider{
+  width:110px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  margin:0 auto 28px;
+}
+
+.featured-spotlight{
+  background:
+    radial-gradient(circle at 15% 40%,rgba(215,161,43,.12),transparent 26%),
+    radial-gradient(circle at 90% 60%,rgba(70,18,90,.28),transparent 25%),
+    rgba(0,0,0,.35);
+}
+
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.review-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(0,0,0,.55);
+  padding:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.review-card strong{
+  color:var(--gold2);
+  display:block;
+  margin-bottom:8px;
+}
+
+.review-stars{
+  color:var(--gold2);
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.qr-callout{
+  background:linear-gradient(135deg,rgba(53,16,77,.72),rgba(0,0,0,.72));
+}
+
+.qr-callout .qr-box{
+  box-shadow:var(--shadow-gold);
+}
+
+/* Smooth reveal */
+.fade-in{
+  opacity:0;
+  transform:translateY(18px);
+}
+
+body.loaded .fade-in{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.fade-in:nth-of-type(2){transition-delay:.08s}
+.fade-in:nth-of-type(3){transition-delay:.14s}
+.fade-in:nth-of-type(4){transition-delay:.20s}
+
+/* Better shop filters */
+.search-row{
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(215,161,43,.25);
+  padding:14px;
+  border-radius:12px;
+}
+
+/* Admin polish */
+.admin-link-note{
+  font-size:12px;
+  color:var(--cream);
+}
+
+/* Laptop / medium desktop keeps 4 across until narrower screens */
+@media(max-width:1100px){
+  .category-grid-premium{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:14px;
+  }
+  .category-grid-premium .card h3{
+    font-size:16px;
+  }
+  .category-grid-premium .card-body{
+    padding:14px;
+  }
+}
+
+/* Tablet: 2x2 */
+@media(max-width:800px){
+  .category-grid-premium{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* Mobile: 1x */
+@media(max-width:560px){
+  .category-grid-premium{
+    grid-template-columns:1fr;
+  }
+  .review-grid{
+    grid-template-columns:1fr;
+  }
+}
