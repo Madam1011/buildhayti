@@ -1,0 +1,34 @@
+HAYTI'S VERSION 3.0 — SIGNATURE EDITION
+
+This package preserves:
+- Admin dashboard
+- Product manager
+- Drag-and-drop image support
+- Inventory fields
+- Stripe link fields
+- Cloudflare/GitHub static workflow
+
+It redesigns the public homepage to match the latest reference mockup more closely.
+
+UPLOAD:
+1. Unzip this folder.
+2. In GitHub, upload/replace:
+   admin/
+   assets/
+   css/
+   data/
+   docs/
+   js/
+   index.html
+   shop.html
+   product.html
+   qr.html
+   about.html
+   contact.html
+3. Commit changes.
+4. Wait for Cloudflare to deploy.
+5. Hard refresh the site.
+
+Cloudflare settings remain:
+Build command: blank
+Build output directory: /
