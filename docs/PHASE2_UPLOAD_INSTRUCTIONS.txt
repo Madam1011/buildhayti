@@ -1,0 +1,41 @@
+PHASE 2 UPLOAD INSTRUCTIONS
+
+1. Unzip this folder.
+2. In GitHub, upload/replace:
+   assets
+   css
+   js
+   data
+   admin
+   docs
+   index.html
+   shop.html
+   product.html
+   qr.html
+   about.html
+   contact.html
+
+3. Cloudflare settings stay:
+   Build command: blank
+   Build output directory: /
+
+4. Commit changes.
+5. Wait for Cloudflare to deploy.
+6. Test:
+   / 
+   /shop.html
+   /product.html
+   /qr.html
+   /admin/
+
+WHAT PHASE 2 ADDS
+- Transparent logo
+- Improved homepage sections
+- Wellness categories
+- Better shop page with search/filter
+- Shopify-style admin dashboard
+- Drag-and-drop product image support
+- Inventory, SKU, categories, featured products
+- Stripe link fields
+- Settings editor
+- Better mobile polish
